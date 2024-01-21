@@ -21,7 +21,6 @@ main_menu = True
 run = True
 
 #load images
-restart_img = pygame.image.load('img/restart_btn.png')
 start_img = pygame.image.load('img/start_btn.png')
 exit_img = pygame.image.load('img/exit_btn.png')
 bg2_img = pygame.image.load('img/sky.png')
@@ -94,7 +93,7 @@ class Button():
     screen.blit(self.image, self.rect)
 
     return action
-    
+
 class Enemy(pygame.sprite.Sprite):
   def __init__(self, x, y):
     pygame.sprite.Sprite.__init__(self)
@@ -106,7 +105,7 @@ class Enemy(pygame.sprite.Sprite):
     self.move_counter = 0
     blob = Enemy(col_count * tile_size, row_count * tile_size + 15)
     blob_group.add(blob)
-  
+
   def update(self):
     self.rect.x += self.move_direction
     self.move_counter += 1
@@ -406,13 +405,20 @@ def handle_move(player, objects):
     for obj in to_check:
         if obj and obj.name == "fire":
             player.make_hit()
+            pygame.time.delay(1000)
+            pygame.quit()
+      
     for obj in to_check:
         if obj and obj.name == "fpla":
             player.make_hit()
+            pygame.time.delay(1000)
+            pygame.quit()
 
     for obj in to_check:
       if obj and obj.name == "Fan":
         player.make_hit()
+        pygame.time.delay(1000)
+        pygame.quit()
 
 
 def main(window):
@@ -423,7 +429,7 @@ def main(window):
     background, bg_image = get_background("Green.png")
     run = True
     main_menu = True
-    Button(screen_width // 2 - 50, screen_height // 2 + 100, restart_img)
+    Button(screen_width // 2 - 50, screen_height // 2 + 100, start_img)
 
     block_size = 96
 
@@ -438,7 +444,7 @@ def main(window):
     floor = [Block(i * block_size, HEIGHT - block_size, block_size) for i in range(-(WIDTH * 2) // block_size, (WIDTH * 2) // block_size)]
     wall1 = [Block(WIDTH + (block_size * 5), i * block_size, block_size) for i in range(-HEIGHT // block_size, (HEIGHT * 2) // block_size)]
     wall2 = [Block(-WIDTH - (block_size * 5), i * block_size, block_size) for i in range(-HEIGHT // block_size, (HEIGHT * 2) // block_size)]
-  
+
     objects = [*floor, *wall1, *wall2, Block(block_size * 0, HEIGHT - block_size * 2, block_size), Block(block_size * 3, HEIGHT - block_size * 4, block_size),  Block(block_size * 2, HEIGHT - block_size * 4, block_size), Block(block_size * -1, HEIGHT - block_size * 5, block_size),  Block(block_size * -5, HEIGHT - block_size * 4, block_size), Block(block_size * -6, HEIGHT - block_size * 4, block_size), Block(block_size * -7, HEIGHT - block_size * 6, block_size), fire, fpla, fan]
 
     offset_x = 333
