@@ -409,6 +409,8 @@ def main(window):
     exit_button = Button(screen_width // 2 + 150, screen_height // 2, exit_img)
     clock = pygame.time.Clock()
     background, bg_image = get_background("Green.png")
+  
+    
     run = True
     main_menu = True
     Button(screen_width // 2 - 50, screen_height // 2 + 100, start_img)
@@ -465,7 +467,6 @@ block_size),Block(block_size * 6, HEIGHT - block_size * 4, block_size), fire, fp
                 if event.key == pygame.K_SPACE and player.jump_count < 2:
                     player.jump()
             
-
 
 
 
